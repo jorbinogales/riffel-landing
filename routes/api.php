@@ -2,10 +2,10 @@
 
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\InstitutionController;
-use App\Http\Controllers\PetController;
-use App\Http\Controllers\SpeciesController;
-use App\Http\Controllers\RaceController;
+use App\Http\Controllers\PeopleController;
+use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\LawyerController;
+use App\Http\Controllers\AnsweringController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,58 +23,38 @@ use App\Http\Controllers\RaceController;
 
 /* PUBLIC */
 Route::middleware('api')->group(function () { 
-     /* API RESOURCE */
-
-     /* INSTITUTION */
-    Route::prefix('institution')->group(function () {
-
-        Route::get('', [InstitutionController::class, 'index']);
-        Route::post('', [InstitutionController::class, 'store']);
-        Route::apiResource('', InstitutionController::class, array('as' => 'institution'))
-                    ->except(['index, store'])
-                    ->parameters(['' => 'institution']);
     
-        
-    });
+    /* PEOPLE */
+    Route::prefix('people')->group(function(){
 
-    /* PET */
-    Route::prefix('pet')->group(function (){
-
-        Route::get('', [PetController::class, 'index']);
-        Route::post('', [PetController::class, 'store']);
-        Route::post('/{pet}', [PetController::class, 'update']);
-
-        Route::apiResource('', PetController::class, array('as' => 'pet'))
-                ->except(['index', 'store', 'update'])
-                ->parameters(['' => 'pet']);
+        Route::get('', [PeopleController::class, 'index']);
+        Route::post('', [PeopleController::class, 'store']);
+        Route::apiResource('', PeopleController::class, array('as' => 'people'))
+                    ->except(['index', 'store'])
+                    ->parameters(['' => 'people']);
 
     });
 
-    /* SPECIES */
+    /* QUESTION */
 
-    Route::prefix('species')->group(function (){
-
-        Route::get('', [SpeciesController::class, 'index']);
-        Route::post('', [SpeciesController::class, 'store']);
-
-        Route::apiResource('', SpeciesController::class, array('as' => 'species'))
-                ->except(['index', 'store'])
-                ->parameters(['' => 'species']);
-
+    Route::prefix('question')->group(function(){
+        Route::post('', [QuestionController::class, 'store']);
     });
 
-    /* RACE */
+     /* LAWYER  */
 
-    Route::prefix('race')->group(function (){
-
-        Route::get('', [RaceController::class, 'index']);
-        Route::post('', [RaceController::class, 'store']);
-
-        Route::apiResource('', RaceController::class, array('as' => 'race'))
-                ->except(['index', 'store'])
-                ->parameters(['' => 'race']);
-
+     Route::prefix('lawyer')->group(function(){
+        Route::get('', [LawyerController::class, 'index']);
+        Route::post('', [LawyerController::class, 'store']);
     });
+
+         /* LAWYER  */
+
+    Route::prefix('answering')->group(function(){
+        Route::get('', [AnsweringController::class, 'index']);
+        Route::post('', [AnsweringController::class, 'store']);
+    });
+    
 
 });
 

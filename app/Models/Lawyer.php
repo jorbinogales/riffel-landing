@@ -7,26 +7,20 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Species extends Model
+class Lawyer extends Model
 {
     use HasFactory, SoftDeletes;
-    
 
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
+        'birth',
+        'picture'
     ];
-    
 
-    /**
-     * Get All races for the species
-     * 
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-
-    public function races()
+    public function answerings()
     {
-        return $this->hasMany(Race::class);
+        return $this->hasMany(Answering::class);
     }
-
-
+    
 }

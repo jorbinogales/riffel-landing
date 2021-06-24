@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RaceRequest extends FormRequest
+class QuestionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,16 +24,8 @@ class RaceRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|min:3|max:100',
-            'species_id' => 'required|exists:species,id',
-        ];
-    }
-
-    public function attributes()
-    {
-        return [
-            'name' => 'nombre',
-            'species_id' => 'especie',
+            'text' => 'required|string|min:3|max:100',
+            'people_id' => 'required|exists:people,id',
         ];
     }
 }

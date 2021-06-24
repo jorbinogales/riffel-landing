@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Species;
+use App\Models\Lawyer;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class SpeciesFactory extends Factory
+class LawyerFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Species::class;
+    protected $model = Lawyer::class;
 
     /**
      * Define the model's default state.
@@ -22,7 +22,7 @@ class SpeciesFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name()
+            //
         ];
     }
 }

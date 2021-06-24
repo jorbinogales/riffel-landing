@@ -2,11 +2,9 @@
 
 namespace App\Http\Resources;
 
-use App\Models\Pet;
-use App\Http\Resources\PetResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class InstitutionResource extends JsonResource
+class AnsweringResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,12 +14,11 @@ class InstitutionResource extends JsonResource
      */
     public function toArray($request)
     {
-        return[
+        return [
             'id' => $this->id,
-            'name' => $this->name,
-            'phone' => $this->phone,
-            'email' => $this->email,
-            'pets' => $this->pets
+            'text' => $this->text,
+            'laywer_id' => $this->lawyer,
+            'question_id'=> $this->question,
         ];
     }
 }

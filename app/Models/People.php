@@ -4,28 +4,25 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Institution extends Model
+class People extends Model
 {
     use HasFactory, SoftDeletes;
 
-
     protected $fillable = [
-        'name',
-        'phone',
-        'email',
+        'email'
     ];
 
     /**
-     * Get all of the pet for the Institution
-     *
+     * Get all questions from people
+     * 
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function pets()
-    {
-        return $this->hasMany(Pet::class);
-    }
 
+    public function questions()
+    {
+        return $this->hasMany(Question::class);
+    }
 }

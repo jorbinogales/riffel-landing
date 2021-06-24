@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\{Race, Species};
+use App\Models\Question;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class RaceFactory extends Factory
+class QuestionFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Race::class;
+    protected $model = Question::class;
 
     /**
      * Define the model's default state.
@@ -22,8 +22,7 @@ class RaceFactory extends Factory
     public function definition()
     {
         return [
-            'species_id' => Species::class,
-            'name' => $this->faker->name(),
+            //
         ];
     }
 }

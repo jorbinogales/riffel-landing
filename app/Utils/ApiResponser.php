@@ -8,7 +8,7 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 
 trait ApiResponser
 {
-    protected function successfullResponse($code = CodeResponse::SUCCESSFUL, $httpCode = 200)
+    protected function successFullResponse($code = CodeResponse::SUCCESSFUL, $httpCode = 200)
     {
         return response()->json(['code' => $code], $httpCode);
     }
