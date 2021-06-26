@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Lawyer;
+use App\Models\Search;
 use Illuminate\Http\Request;
-use App\Http\Requests\Lawyer\LawyerRequest;
-use App\Http\Resources\LawyerResource;
+use App\Http\Requests\Search\SearchRequest;
+use App\Http\Resources\SearchResource;
+use Exception;
 
-class LawyerController extends Controller
+
+class SearchController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,49 +18,49 @@ class LawyerController extends Controller
      */
     public function index()
     {
-        return $this->showAll(LawyerResource::collection(Lawyer::get()));
+        return $this->showAll(SearchResource::collection(Search::get()));
     }
-
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\LawyerRequest  $request
+     * @param  \App\Http\Request\Search\SearchRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(LawyerRequest $request)
+    public function store(SearchRequest $request)
     {
         try {
 
-            Lawyer::create($request->validated());
+            Search::create($request->validated());
 
             return $this->successFullResponse();
+
+        } catch (Exception $e){
             
-        } catch (Exception $e) {
             return $e;
+
         }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Lawyer  $lawyer
+     * @param  \App\Models\Search  $search
      * @return \Illuminate\Http\Response
      */
-    public function show(Lawyer $lawyer)
+    public function show(Search $search)
     {
         //
     }
-
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Lawyer  $lawyer
+     * @param  \App\Models\Search  $search
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Lawyer $lawyer)
+    public function update(Request $request, Search $search)
     {
         //
     }
@@ -66,10 +68,10 @@ class LawyerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Lawyer  $lawyer
+     * @param  \App\Models\Search  $search
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Lawyer $lawyer)
+    public function destroy(Search $search)
     {
         //
     }

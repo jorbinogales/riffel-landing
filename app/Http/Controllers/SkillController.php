@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Lawyer;
+use App\Models\Skill;
 use Illuminate\Http\Request;
-use App\Http\Requests\Lawyer\LawyerRequest;
-use App\Http\Resources\LawyerResource;
+use App\Http\Requests\Skill\SkillRequest;
+use Exception;
 
-class LawyerController extends Controller
+class SkillController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,49 +16,49 @@ class LawyerController extends Controller
      */
     public function index()
     {
-        return $this->showAll(LawyerResource::collection(Lawyer::get()));
+        //
     }
-
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\LawyerRequest  $request
+     * @param  \App\Http\Requests\Skill\SkillRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(LawyerRequest $request)
+    public function store(SkillRequest $request)
     {
         try {
 
-            Lawyer::create($request->validated());
+            Skill::create($request->validated());
 
             return $this->successFullResponse();
-            
-        } catch (Exception $e) {
+
+        } catch (Exception $e){
+
             return $e;
+
         }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Lawyer  $lawyer
+     * @param  \App\Models\Skill  $skill
      * @return \Illuminate\Http\Response
      */
-    public function show(Lawyer $lawyer)
+    public function show(Skill $skill)
     {
         //
     }
-
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Lawyer  $lawyer
+     * @param  \App\Models\Skill  $skill
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Lawyer $lawyer)
+    public function update(Request $request, Skill $skill)
     {
         //
     }
@@ -66,10 +66,10 @@ class LawyerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Lawyer  $lawyer
+     * @param  \App\Models\Skill  $skill
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Lawyer $lawyer)
+    public function destroy(Skill $skill)
     {
         //
     }

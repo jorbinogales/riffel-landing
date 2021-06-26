@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Skill;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class LawyerRequest extends FormRequest
+class SkillRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,20 +24,16 @@ class LawyerRequest extends FormRequest
     public function rules()
     {
         return [
-            'first_name'=>'required|string|min:2|max:150',
-            'last_name'=>'required|string|min:2|max:150',
-            'birth'=>'required|date',
-            'picture'=>'nullable|string',
+            'lawyer_id' => 'required|exists:lawyers,id',
+            'list_skill_id' => 'required|exists:list_skills,id',
         ];
     }
 
     public function attributes()
     {
         return [
-            'first_name' => 'Primer Nombre',
-            'last_name' => 'Segundo Nombre',
-            'birth' => 'Fecha de Nacimiento',
-            'picture' => 'Foto de Perfil',
+            'lawyer_id' => 'id del abogado',
+            'list_skill_id' => 'id del skill',
         ];
     }
 }

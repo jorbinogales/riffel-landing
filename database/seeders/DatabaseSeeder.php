@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\{Species, Race};
+use App\Models\ListSkill;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Schema;
 
@@ -17,7 +17,6 @@ class DatabaseSeeder extends Seeder
     {
         Schema::disableForeignKeyConstraints();
 
-        $this->call(SpeciesSeeder::class);
-        $this->call(RaceSeeder::class);
+        $this->call(ListSkillSeeder::class);
     }
 }

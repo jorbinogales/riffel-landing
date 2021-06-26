@@ -6,6 +6,8 @@ use App\Http\Controllers\PeopleController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\LawyerController;
 use App\Http\Controllers\AnsweringController;
+use App\Http\Controllers\SearchController;
+use App\Http\Controllers\SkillController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,12 +50,26 @@ Route::middleware('api')->group(function () {
         Route::post('', [LawyerController::class, 'store']);
     });
 
-         /* LAWYER  */
+     /* LAWYER  */
 
     Route::prefix('answering')->group(function(){
         Route::get('', [AnsweringController::class, 'index']);
         Route::post('', [AnsweringController::class, 'store']);
     });
+
+    /* Search  */
+
+    Route::prefix('search')->group(function(){
+        Route::get('', [SearchController::class, 'index']);
+        Route::post('', [SearchController::class, 'store']);
+    });
+
+    /* Skill  */
+
+       Route::prefix('skill')->group(function(){
+        Route::post('', [SkillController::class, 'store']);
+    });
+    
     
 
 });

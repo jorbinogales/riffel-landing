@@ -18,9 +18,22 @@ class Lawyer extends Model
         'picture'
     ];
 
+    /**
+     * @param Illuminate\Database\Eloquent\Relations\HasMany;
+     */
+
     public function answerings()
     {
         return $this->hasMany(Answering::class);
+    }
+
+        /**
+     * @param Illuminate\Database\Eloquent\Relations\HasMany;
+     */
+
+    public function skills()
+    {
+        return $this->hasMany(Skill::class);
     }
     
 }
