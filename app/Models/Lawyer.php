@@ -27,7 +27,7 @@ class Lawyer extends Model
         return $this->hasMany(Answering::class);
     }
 
-        /**
+    /**
      * @param Illuminate\Database\Eloquent\Relations\HasMany;
      */
 
@@ -35,5 +35,15 @@ class Lawyer extends Model
     {
         return $this->hasMany(Skill::class);
     }
+
+     /**
+     * @param Illuminate\Database\Eloquent\Relations\HasMany;
+     */
+
+    public function rewards()
+    {
+        return $this->hasMany(Rewards::class);
+    }
+    
     
 }

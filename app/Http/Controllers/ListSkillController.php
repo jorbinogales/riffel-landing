@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ListSkill;
 use Illuminate\Http\Request;
+use App\Http\Resources\ListSkillResource;
 
 class ListSkillController extends Controller
 {
@@ -14,7 +15,7 @@ class ListSkillController extends Controller
      */
     public function index()
     {
-        //
+        return $this->showAll(ListSkillResource::collection(ListSkill::get()));
     }
 
     /**

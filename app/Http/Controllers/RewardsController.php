@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Skill;
+use App\Models\Rewards;
 use Illuminate\Http\Request;
-use App\Http\Requests\Skill\SkillRequest;
-use App\Http\Resources\SkillResource;
-use Exception;
+use App\Http\Requests\Lawyer\RewardsRequest;
 
-class SkillController extends Controller
+class RewardsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,37 +15,33 @@ class SkillController extends Controller
      */
     public function index()
     {
-        return $this->showAll(SkillResource::collection(Skill::get()));
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\Skill\SkillRequest  $request
+     * @param  App\Http\Requests\Lawyer\RewardsRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(SkillRequest $request)
+    public function store(RewardsRequest $request)
     {
         try {
 
-            Skill::create($request->validated());
-
-            return $this->successFullResponse();
+            Rewards::create($request->validated());
 
         } catch (Exception $e){
-
             return $e;
-
         }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Skill  $skill
+     * @param  \App\Models\Rewards  $rewards
      * @return \Illuminate\Http\Response
      */
-    public function show(Skill $skill)
+    public function show(Rewards $rewards)
     {
         //
     }
@@ -56,10 +50,10 @@ class SkillController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Skill  $skill
+     * @param  \App\Models\Rewards  $rewards
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Skill $skill)
+    public function update(Request $request, Rewards $rewards)
     {
         //
     }
@@ -67,10 +61,10 @@ class SkillController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Skill  $skill
+     * @param  \App\Models\Rewards  $rewards
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Skill $skill)
+    public function destroy(Rewards $rewards)
     {
         //
     }

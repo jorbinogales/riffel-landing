@@ -21,6 +21,7 @@ class LawyerResource extends JsonResource
             'picture' => $this->picture,
             'answerings' => $this->answerings,
             'skills' => $this->skills,
+            'rewards' => $this->rewards,
         ];
     }
 }

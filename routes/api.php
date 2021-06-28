@@ -8,6 +8,8 @@ use App\Http\Controllers\LawyerController;
 use App\Http\Controllers\AnsweringController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SkillController;
+use App\Http\Controllers\ListSkillController;
+use App\Http\Controllers\RewardsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,10 +68,22 @@ Route::middleware('api')->group(function () {
 
     /* Skill  */
 
-       Route::prefix('skill')->group(function(){
+    Route::prefix('skill')->group(function(){
+        Route::get('', [SkillController::class, 'index']);
         Route::post('', [SkillController::class, 'store']);
     });
+
+    /* Skill  */
+
+    Route::prefix('listskill')->group(function(){
+        Route::get('', [ListSkillController::class, 'index']);
+    });
     
+        /* Skill  */
+
+    Route::prefix('rewards')->group(function(){
+        Route::post('', [RewardsController::class, 'store']);
+    });
     
 
 });
