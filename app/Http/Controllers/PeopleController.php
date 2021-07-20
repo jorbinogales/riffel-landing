@@ -28,9 +28,14 @@ class PeopleController extends Controller
     {
         try{
 
-            People::create($request->validated());
+            $people = People::where('email', $request->validated())->count();
 
-            return $this->successFullResponse();
+            if($people == 0){
+                
+                People::create($request->validated());
+            } 
+
+           return People::where('email', $request->validated())->get();
 
         } catch (Exception $e){
             
@@ -45,7 +50,7 @@ class PeopleController extends Controller
      * @param  \App\Models\People  $people
      * @return \Illuminate\Http\Response
      */
-    public function show(PeopleRequest $people)
+    public function show(People $people)
     {
         try {
 

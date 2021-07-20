@@ -14,7 +14,6 @@ class ListSkillSeeder extends Seeder
      */
     public function run()
     {
-        ListSkill::all()->each(fn($data) => $data->delete());
 
         $datas = [
             ['text' => 'Migracion'],

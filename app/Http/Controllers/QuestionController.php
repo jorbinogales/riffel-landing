@@ -16,7 +16,7 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        //
+        return $this->showAll(QuestionResource::collection(Question::get()));
     }
 
     /**
@@ -72,5 +72,17 @@ class QuestionController extends Controller
     public function destroy(Question $question)
     {
         //
+    }
+
+    /**
+     * @return \Illuminate\Http\Response;
+     */
+    public function count()
+    {
+        try {
+            return Question::count();
+        } catch (Exception $e){
+            return $e;
+        }
     }
 }

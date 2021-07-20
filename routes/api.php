@@ -42,7 +42,9 @@ Route::middleware('api')->group(function () {
     /* QUESTION */
 
     Route::prefix('question')->group(function(){
+        Route::get('', [QuestionController::class, 'index']);
         Route::post('', [QuestionController::class, 'store']);
+        Route::get('count',[QuestionController::class, 'count']);
     });
 
      /* LAWYER  */
