@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Question;
 use Illuminate\Http\Request;
 use App\Http\Requests\QuestionRequest;
 use App\Http\Resources\QuestionResource;
+use App\Mail\QuestionMail;
+use Mail;
 
 class QuestionController extends Controller
 {
@@ -29,10 +32,12 @@ class QuestionController extends Controller
     {
         try {
 
-            Question::create($request->validated());
+            $question = Question::create($request->validated());
 
-            return $this->successFullResponse();
+             Mail::to('claudiav.urosa@gmail.com')->send(new QuestionMail($question));
 
+            return  $this->successFullResponse();
+            
         } catch (Exception $e){
 
             return $e;
