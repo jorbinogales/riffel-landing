@@ -25,4 +25,36 @@ trait ImageTrait
             return $e;
         }
     }
+
+    /**
+     * @param $request ( request input )
+     * @param $folder ( folder name)
+     * @param $toUpdate ( model to update)
+     */
+
+    protected function createImage($request, $folder, $toUpdate){
+
+        try { 
+
+            if($request->picture != null){
+
+                $name = str_replace(' ','-', $request->first_name);
+                $date = Date('y-m-d_h-s');
+
+                $toUpdate->update([
+                    'picture' => ($request->hasFile('picture')) 
+                                ? "$name"."$date.png"
+                                : null,
+                ]);
+
+                $request->file('picture')->storeAs($folder, "$name"."$date.png", 'public');
+
+            }
+
+        } catch (Exception $e){
+
+            return $e;
+
+        }
+    }
 }

@@ -34,7 +34,7 @@ class QuestionController extends Controller
 
             $question = Question::create($request->validated());
 
-             Mail::to('claudiav.urosa@gmail.com')->send(new QuestionMail($question));
+            Mail::to('claudiav.urosa@gmail.com')->send(new QuestionMail($question));
 
             return  $this->successFullResponse();
             
@@ -87,6 +87,19 @@ class QuestionController extends Controller
         try {
             return Question::count();
         } catch (Exception $e){
+            return $e;
+        }
+    }
+
+    public function last(){
+
+        try { 
+            
+            $question = QuestionResource::collection(Question::orderBy('id', 'desc')->limit(10)->get());
+
+            return $question;
+
+        } catch (exception $e){
             return $e;
         }
     }

@@ -45,6 +45,7 @@ Route::middleware('api')->group(function () {
         Route::get('', [QuestionController::class, 'index']);
         Route::post('', [QuestionController::class, 'store']);
         Route::get('count',[QuestionController::class, 'count']);
+        Route::get('last', [QuestionController::class, 'last']);
     });
 
      /* LAWYER  */
@@ -52,6 +53,7 @@ Route::middleware('api')->group(function () {
      Route::prefix('lawyer')->group(function(){
         Route::get('', [LawyerController::class, 'index']);
         Route::post('', [LawyerController::class, 'store']);
+        Route::post('/search', [LawyerController::class, 'search']);
     });
 
      /* LAWYER  */
@@ -75,18 +77,17 @@ Route::middleware('api')->group(function () {
         Route::post('', [SkillController::class, 'store']);
     });
 
-    /* Skill  */
+    /* ListSkill  */
 
     Route::prefix('listskill')->group(function(){
         Route::get('', [ListSkillController::class, 'index']);
     });
     
-        /* Skill  */
+    /* Rewards  */
 
     Route::prefix('rewards')->group(function(){
         Route::post('', [RewardsController::class, 'store']);
     });
-    
 
 });
 

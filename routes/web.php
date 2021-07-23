@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +18,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+/* image */
+ Route::prefix('image')->group(function(){
+
+    Route::get('lawyers/{filename}', function ($filename){
+
+        $file = Storage::disk('local')->get('public/lawyers/'.$filename);
+        return response($file, 200)->header('Content-Type', 'image/jpeg');
+    });
+
+});
+
+
+

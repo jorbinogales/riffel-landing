@@ -6,6 +6,7 @@ use App\Models\Lawyer;
 use Illuminate\Http\Request;
 use App\Http\Requests\Lawyer\LawyerRequest;
 use App\Http\Resources\LawyerResource;
+use Illuminate\Database\Eloquent\Builder;
 
 class LawyerController extends Controller
 {
@@ -30,7 +31,10 @@ class LawyerController extends Controller
     {
         try {
 
-            Lawyer::create($request->validated());
+            $lawyer = Lawyer::create($request->validated());
+
+            // Use App\Utils\ImageTrait
+            $this->createImage($request, "lawyers", $lawyer);
 
             return $this->successFullResponse();
             
@@ -60,7 +64,18 @@ class LawyerController extends Controller
      */
     public function update(Request $request, Lawyer $lawyer)
     {
-        //
+        try { 
+
+            $lawyer->update($request->validated());
+
+            // Use App\Utils\ImageTrait
+            $this->createImage($request, "lawyers", $lawyer);
+
+            return $this->successFullResponse();
+
+        } catch (Exception $e){
+            return $e;
+        }
     }
 
     /**
@@ -73,4 +88,19 @@ class LawyerController extends Controller
     {
         //
     }
+
+    public function search(Request $request)
+    {
+          $response = Lawyer::query();
+
+          if($request->first_name){
+                $response->where(function(builder $query) use ($request){
+                    return $query->where('first_name', 'LIKE', "%$request->first_name%");
+                });
+          }
+
+          return $this->showPaginated(LawyerResource::collection($response->paginate($request->limit)));
+    }
+
+
 }
