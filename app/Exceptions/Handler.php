@@ -80,7 +80,20 @@ class Handler extends ExceptionHandler
             return $this->errorResponse(CodeResponse::FORBIDDEN, 403);
         }
 
+        if (get_class($exception) === \Laravel\Passport\Exceptions\OAuthServerException::class) {
+            return response(['message' => $exception->getMessage()], 400);
+        }
 
-        return parent::render($request, $exception);
+        if($exception instanceof ValidationException){
+            return response([
+                'errors' => $exception->errors()
+            ], 400);
+        }
+
+
+
+        // return parent::render($request, $exception);
+
+        return response(['error' => $exception->getMessage()], $exception->getCode() ?: 400);
     }
 }

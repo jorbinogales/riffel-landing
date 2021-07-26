@@ -10,6 +10,7 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\ListSkillController;
 use App\Http\Controllers\RewardsController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +22,6 @@ use App\Http\Controllers\RewardsController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
 
 
 
@@ -89,5 +89,16 @@ Route::middleware('api')->group(function () {
         Route::post('', [RewardsController::class, 'store']);
     });
 
+    Route::prefix('user')->group(function(){
+        Route::post('', [UserController::class, 'store']);
+    });
+
 });
 
+
+Route::middleware('auth:api')->group(function(){
+
+    Route::prefix('user')->group(function(){
+        Route::get('', [UserController::class, 'index']);
+    });
+});
