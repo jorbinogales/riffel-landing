@@ -86,7 +86,7 @@ Route::middleware('api')->group(function () {
     /* Rewards  */
 
     Route::prefix('rewards')->group(function(){
-        Route::post('', [RewardsController::class, 'store']);
+        Route::post('create', [RewardsController::class, 'store']);
     });
 
 });
