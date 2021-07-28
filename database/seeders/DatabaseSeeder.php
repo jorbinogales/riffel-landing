@@ -18,6 +18,5 @@ class DatabaseSeeder extends Seeder
         Schema::disableForeignKeyConstraints();
 
         $this->call(ListSkillSeeder::class);
-        $this->call(UserTableSeeder::class);
     }
 }

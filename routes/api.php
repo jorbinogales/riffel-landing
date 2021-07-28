@@ -52,8 +52,8 @@ Route::middleware('api')->group(function () {
 
      Route::prefix('lawyer')->group(function(){
         Route::get('', [LawyerController::class, 'index']);
-        Route::post('', [LawyerController::class, 'store']);
-        Route::post('/search', [LawyerController::class, 'search']);
+        Route::post('create', [LawyerController::class, 'store']);
+        Route::post('search', [LawyerController::class, 'search']);
     });
 
      /* LAWYER  */
@@ -89,16 +89,5 @@ Route::middleware('api')->group(function () {
         Route::post('', [RewardsController::class, 'store']);
     });
 
-    Route::prefix('user')->group(function(){
-        Route::post('', [UserController::class, 'store']);
-    });
-
 });
 
-
-Route::middleware('auth:api')->group(function(){
-
-    Route::prefix('user')->group(function(){
-        Route::get('', [UserController::class, 'index']);
-    });
-});

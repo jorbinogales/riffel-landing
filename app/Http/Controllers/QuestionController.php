@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Question;
+use App\Models\Lawyer;
 use Illuminate\Http\Request;
 use App\Http\Requests\QuestionRequest;
 use App\Http\Resources\QuestionResource;
@@ -34,7 +35,13 @@ class QuestionController extends Controller
 
             $question = Question::create($request->validated());
 
-            Mail::to('claudiav.urosa@gmail.com')->send(new QuestionMail($question));
+            $users = Lawyer::all();
+
+            foreach($users as $user):
+
+                Mail::to($user->email)->send(new QuestionMail($question));
+
+            endforeach;
 
             return  $this->successFullResponse();
             

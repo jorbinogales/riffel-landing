@@ -30,6 +30,8 @@ class RewardsController extends Controller
 
             Rewards::create($request->validated());
 
+            return $this->successFullResponse();
+
         } catch (Exception $e){
             return $e;
         }
