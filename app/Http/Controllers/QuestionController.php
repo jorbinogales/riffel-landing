@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Question;
 use App\Models\Lawyer;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\QuestionRequest;
 use App\Http\Resources\QuestionResource;
@@ -35,7 +36,7 @@ class QuestionController extends Controller
 
             $question = Question::create($request->validated());
 
-            $users = Lawyer::all();
+            $users = User::all();
 
             foreach($users as $user):
 
