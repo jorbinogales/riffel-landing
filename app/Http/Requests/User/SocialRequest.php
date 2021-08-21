@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class QuestionRequest extends FormRequest
+class SocialRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,8 @@ class QuestionRequest extends FormRequest
     public function rules()
     {
         return [
-            'text' => 'required|string|min:3',
-            'people_id' => 'required|exists:people,id',
+            'provider' => 'required',
+            'email' => 'required|email',
         ];
     }
 }

@@ -73,6 +73,7 @@ class PeopleController extends Controller
     public function update(PeopleRequest $request, People $people)
     {
         try {
+            
 
             $people->update($request->validated());
 
@@ -93,6 +94,7 @@ class PeopleController extends Controller
      */
     public function destroy(People $people)
     {
+
         try {
 
             $people->delete();
@@ -101,7 +103,8 @@ class PeopleController extends Controller
         } catch (Exception $e){
 
             return $e;
-
+            
         }
+
     }
 }

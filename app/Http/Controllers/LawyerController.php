@@ -33,7 +33,6 @@ class LawyerController extends Controller
 
             $lawyer = Lawyer::create($request->validated());
 
-            // Use App\Utils\ImageTrait
             $this->createImage($request, "lawyers", $lawyer);
 
             return $this->successFullResponse();
@@ -51,7 +50,11 @@ class LawyerController extends Controller
      */
     public function show(Lawyer $lawyer)
     {
-        //
+        try { 
+            return $this->showOne(new LawyerResource($lawyer));
+        } catch (Exception $e){
+            return $e;
+        }
     }
 
 

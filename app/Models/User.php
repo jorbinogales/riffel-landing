@@ -39,4 +39,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+      /**
+     * @param Illuminate\Database\Eloquent\Relations\HasMany;
+     */
+
+    public function lawyer()
+    {
+        return $this->hasOne(Lawyer::class);
+    }
+
+
+    public function AauthAcessToken(){
+        return $this->hasMany('\App\Models\OauthAccessToken');
+    }
 }

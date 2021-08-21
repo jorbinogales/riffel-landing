@@ -11,6 +11,7 @@ use App\Http\Controllers\SkillController;
 use App\Http\Controllers\ListSkillController;
 use App\Http\Controllers\RewardsController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PassportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,10 +24,16 @@ use App\Http\Controllers\UserController;
 |
 */
 
-
-
 /* PUBLIC */
 Route::middleware('api')->group(function () { 
+
+    Route::post('login', [PassportController::class, 'login']);
+    Route::post('register', [PassportController::class, 'register']);
+    Route::post('loginWithSocial', [PassportController::class, 'loginWithSocial']);
+
+    Route::prefix('user')->group(function(){
+        Route::post('', [UserController::class, 'store']);
+    });
     
     /* PEOPLE */
     Route::prefix('people')->group(function(){
@@ -52,8 +59,10 @@ Route::middleware('api')->group(function () {
 
      Route::prefix('lawyer')->group(function(){
         Route::get('', [LawyerController::class, 'index']);
-        Route::post('create', [LawyerController::class, 'store']);
-        Route::post('search', [LawyerController::class, 'search']);
+        Route::post('', [LawyerController::class, 'store']);
+        Route::apiResource('', LawyerController::class, array('as' => 'lawyer'))
+                    ->except(['index', 'store'])
+                    ->parameters(['' => 'lawyer']);
     });
 
      /* LAWYER  */
@@ -91,3 +100,10 @@ Route::middleware('api')->group(function () {
 
 });
 
+/* PROTECTED */
+Route::middleware('auth:api')->group(function(){
+    Route::prefix('user')->group(function(){
+         Route::get('', [PassportController::class, 'details']);
+         Route::post('logout', [PassportController::class, 'logout']);
+    });
+});

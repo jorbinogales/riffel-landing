@@ -19,6 +19,16 @@ class Lawyer extends Model
         'picture'
     ];
 
+ 
+    /**
+     * @param Illuminate\Database\Eloquent\Relations\HasMany;
+     */
+    public function user()
+    {
+        return $this->BelongsTo(User::class);
+    }
+
+
     /**
      * @param Illuminate\Database\Eloquent\Relations\HasMany;
      */
