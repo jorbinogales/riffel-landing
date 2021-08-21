@@ -15,13 +15,13 @@ class LawyerResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'first_name' => $this->first_name,
-            'last_name' => $this->last_name,
+            'name' => $this->name,
             'birth' => $this->birth,
             'picture' => $this->picture,
             'answerings' => $this->answerings,
             'skills' => $this->skills,
             'rewards' => $this->rewards,
+            'user_id' => $this->user,
         ];
     }
 }

@@ -75,9 +75,8 @@ class PassportController extends Controller
                 ]);
 
                 $lawyer = Lawyer::create([
-                    'id_usuario' => $user->id,
-                    'first_name' => $request->firstName,
-                    'last_name' => $request->lastName,
+                    'user_id' => $user->id,
+                    'name' => $request->name,
                     'picture' => $request->photoUrl,
                 ]);
 
@@ -93,7 +92,7 @@ class PassportController extends Controller
             }
 
             return [
-                'token' => $token,
+                'token' => $lawyer,
             ];
 
         } catch (Exception $e){

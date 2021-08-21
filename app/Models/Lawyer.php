@@ -6,26 +6,28 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Lawyer extends Model
 {
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'first_name',
-        'last_name',
-        'email',
+        'name',
         'birth',
-        'picture'
+        'picture',
+        'user_id',
     ];
 
  
+
     /**
-     * @param Illuminate\Database\Eloquent\Relations\HasMany;
+     * @param Illuminate\Database\Eloquent\Relations\HasOne;
      */
+
     public function user()
     {
-        return $this->BelongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 
 

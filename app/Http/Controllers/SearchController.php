@@ -57,7 +57,7 @@ class SearchController extends Controller
                 $total_lawyers = [];
                 
  
-                $lawyers = Lawyer::where('first_name', 'LIKE', '%' . $request->text . '%')->get();
+                $lawyers = Lawyer::where('name', 'LIKE', '%' . $request->text . '%')->get();
                 
                 foreach($lawyers as $lawyer):
 
