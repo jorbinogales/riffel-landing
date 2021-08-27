@@ -6,6 +6,8 @@ use App\Models\People;
 use Illuminate\Http\Request;
 use App\Http\Requests\PeopleRequest;
 use App\Http\Resources\PeopleResource;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\PeopleExport;
 
 class PeopleController extends Controller
 {
@@ -94,4 +96,12 @@ class PeopleController extends Controller
         }
 
     }
+
+       /**
+    * @return \Illuminate\Support\Collection
+    */
+    public function fileExport() 
+    {
+        return Excel::download(new PeopleExport, 'people-collection.xlsx');
+    }    
 }

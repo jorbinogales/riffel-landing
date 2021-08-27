@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -10,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, Notifiable;
+    use HasFactory, HasApiTokens, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -20,7 +21,6 @@ class User extends Authenticatable
     protected $fillable = [
         'email',
         'password',
-        'lawyer_id',
     ];
 
     /**
@@ -42,16 +42,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-        /**
-     * Get people that owns the question
-     * 
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function lawyer()
-    {
-        return $this->hasOne(Lawyer::class);
-    }
-
+   
     public function AauthAcessToken(){
         return $this->hasMany('\App\Models\OauthAccessToken');
     }

@@ -1,15 +1,7 @@
 <?php
 
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PeopleController;
-use App\Http\Controllers\QuestionController;
-use App\Http\Controllers\LawyerController;
-use App\Http\Controllers\AnsweringController;
-use App\Http\Controllers\SearchController;
-use App\Http\Controllers\SkillController;
-use App\Http\Controllers\ListSkillController;
-use App\Http\Controllers\RewardsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PassportController;
 
@@ -26,15 +18,8 @@ use App\Http\Controllers\PassportController;
 /* PUBLIC */
 Route::middleware('api')->group(function () { 
 
-    Route::post('login', [PassportController::class, 'login']);
-    Route::post('register', [PassportController::class, 'register']);
-    Route::post('loginWithSocial', [PassportController::class, 'loginWithSocial']);
-
-    Route::prefix('user')->group(function(){
-        Route::post('', [UserController::class, 'store']);
-    });
-    
     /* PEOPLE */
+    Route::post('login', [PassportController::class, 'login']);
     Route::prefix('people')->group(function(){
         Route::get('', [PeopleController::class, 'index']);
         Route::post('', [PeopleController::class, 'store']);
