@@ -16,7 +16,5 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         Schema::disableForeignKeyConstraints();
-
-        $this->call(ListSkillSeeder::class);
     }
 }
