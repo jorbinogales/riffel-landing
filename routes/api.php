@@ -20,13 +20,8 @@ Route::middleware('api')->group(function () {
 
     /* PEOPLE */
     Route::post('login', [PassportController::class, 'login']);
-    Route::prefix('people')->group(function(){
-        Route::get('', [PeopleController::class, 'index']);
-        Route::post('', [PeopleController::class, 'store']);
-        Route::apiResource('', PeopleController::class, array('as' => 'people'))
-                    ->except(['index', 'store'])
-                    ->parameters(['' => 'people']);
-    });
+    Route::get('', [PeopleController::class, 'index']);
+    Route::post('create', [PeopleController::class, 'store']);
 
 });
 
