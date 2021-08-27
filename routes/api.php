@@ -20,8 +20,11 @@ Route::middleware('api')->group(function () {
 
     /* PEOPLE */
     Route::post('login', [PassportController::class, 'login']);
-    Route::get('', [PeopleController::class, 'index']);
-    Route::post('create', [PeopleController::class, 'store']);
+
+    Route::prefix('people')->group(function(){
+        Route::get('', [PeopleController::class, 'index']);
+        Route::post('create', [PeopleController::class, 'store']);
+    });
 
 });
 
