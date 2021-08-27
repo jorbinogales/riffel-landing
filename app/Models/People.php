@@ -12,7 +12,12 @@ class People extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'email'
+        'first_name',
+        'last_name',
+        'business',
+        'email',
+        'phone',
+        'state',
     ];
 
     /**

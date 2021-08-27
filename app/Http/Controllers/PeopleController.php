@@ -27,20 +27,13 @@ class PeopleController extends Controller
     public function store(PeopleRequest $request)
     {
         try{
-
-            $people = People::where('email', $request->validated())->count();
-
+            $people = People::where('email', $request->email)->count();
             if($people == 0){
-                
                 People::create($request->validated());
             } 
-
-           return People::where('email', $request->validated())->get();
-
+           return $this->successFullResponse();
         } catch (Exception $e){
-            
             return $e;
-
         }
     }
 
@@ -73,16 +66,10 @@ class PeopleController extends Controller
     public function update(PeopleRequest $request, People $people)
     {
         try {
-            
-
             $people->update($request->validated());
-
             return $this->successFullResponse();
-
         } catch (Exception $e){
-
             return $e;
-
         }
     }
 
