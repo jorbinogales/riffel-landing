@@ -60,48 +60,61 @@ class PassportController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function loginWithSocial(SocialRequest $request)
+    // public function loginWithSocial(SocialRequest $request)
+    // {
+    //     try { 
+
+    //         $count = User::where('email', $request->email)->count();
+
+    //         if($count == 0){
+                
+    //             $user = User::create([
+    //                 'email' => $request->email,
+    //                 'password' => 'undefined',
+    //                 'passport' => $request->provider,
+    //             ]);
+
+    //             $lawyer = Lawyer::create([
+    //                 'user_id' => $user->id,
+    //                 'name' => $request->name,
+    //                 'picture' => $request->photoUrl,
+    //             ]);
+
+    //             $token = $user->createToken('personal access token')->accessToken;
+
+    //             Mail::to($user->email)->send(new SucessFullRegister());     
+
+    //         } else { 
+
+    //             $user = User::where('email', $request->email)->first();
+    //             $token = $user->createToken('personal access token')->accessToken;
+                
+    //         }
+
+    //         return [
+    //             'token' => $lawyer,
+    //         ];
+
+    //     } catch (Exception $e){
+
+    //         return $e;
+
+    //     }
+    // }
+
+    public function auth(LoginRequest $request)
     {
         try { 
-
             $count = User::where('email', $request->email)->count();
-
-            if($count == 0){
-                
-                $user = User::create([
-                    'email' => $request->email,
-                    'password' => 'undefined',
-                    'passport' => $request->provider,
-                ]);
-
-                $lawyer = Lawyer::create([
-                    'user_id' => $user->id,
-                    'name' => $request->name,
-                    'picture' => $request->photoUrl,
-                ]);
-
-                $token = $user->createToken('personal access token')->accessToken;
-
-                Mail::to($user->email)->send(new SucessFullRegister());     
-
-            } else { 
-
-                $user = User::where('email', $request->email)->first();
-                $token = $user->createToken('personal access token')->accessToken;
-                
-            }
-
+            $user = User::where('email', $request->email)->first();
+            $token = $user->createToken('personal access token')->accessToken;
             return [
-                'token' => $lawyer,
+                'token' => $token,
             ];
-
         } catch (Exception $e){
-
             return $e;
-
         }
     }
-
 
     /**
      * Returns Authenticated User Details

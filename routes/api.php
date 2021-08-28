@@ -19,7 +19,7 @@ use App\Http\Controllers\PassportController;
 Route::middleware('api')->group(function () { 
 
     /* PEOPLE */
-    Route::post('login', [PassportController::class, 'login']);
+    Route::post('login', [PassportController::class, 'auth']);
 
     Route::prefix('people')->group(function(){
         Route::get('', [PeopleController::class, 'index']);
